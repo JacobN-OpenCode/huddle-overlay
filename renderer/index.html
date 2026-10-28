@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'" />
+    <title>Huddle Overlay</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="panel">
+      <header id="bar">
+        <span id="dot" class="dot"></span>
+        <span id="title">Huddle Overlay</span>
+        <span class="spacer"></span>
+        <button id="hide" title="Hide overlay">&#10005;</button>
+      </header>
+
+      <main id="feed">
+        <div id="empty">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <p class="headline">No thread linked</p>
+          <p class="sub">Paste a Slack thread link below and press Watch.</p>
+        </div>
+        <div id="messages"></div>
+      </main>
+
+      <div id="linkbar">
+        <input id="link" type="text" spellcheck="false" placeholder="Paste Slack thread link…" />
+        <button id="action" class="primary">Watch</button>
+      </div>
+
+      <div id="tokenbar" hidden>
+        <input id="token" type="password" spellcheck="false" placeholder="xoxp-… or xoxc-…" />
+        <button id="savetoken" class="primary">Save</button>
+      </div>
+
+      <footer id="foot">
+        <span id="status" class="status">Idle</span>
+        <span class="spacer"></span>
+        <span id="count" class="count">0</span>
+        <button id="settings" title="Settings">&#9881;</button>
+      </footer>
+
+      <div id="settingspanel" hidden>
+        <label>Opacity <output id="o-opacity"></output>
+          <input id="s-opacity" type="range" min="0.2" max="1" step="0.02" />
+        </label>
+        <label>Font size <output id="o-font"></output>
+          <input id="s-font" type="range" min="9" max="22" step="1" />
+        </label>
+        <label>Message lifetime <output id="o-life"></output>
+          <input id="s-life" type="range" min="0" max="180" step="5" />
+        </label>
+        <label class="row"><input id="s-time" type="checkbox" /> Timestamps</label>
+        <label class="row"><input id="s-click" type="checkbox" /> Click-through <kbd>⌘/Ctrl+Alt+H</kbd></label>
+        <label class="row"><input id="s-capture" type="checkbox" /> Hide from screen share</label>
+        <button id="s-token" class="ghost">Change Slack token</button>
+      </div>
+
+      <div id="grip" title="Resize"></div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

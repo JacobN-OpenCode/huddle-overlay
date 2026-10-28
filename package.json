@@ -1,0 +1,55 @@
+{
+  "name": "huddle-overlay",
+  "productName": "Huddle Overlay",
+  "version": "1.0.0",
+  "description": "Floating Slack thread overlay for huddles. macOS and Windows.",
+  "main": "main.js",
+  "author": "Jacob Navaratne",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac --arm64",
+    "dist:win": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "uk.navaratne.huddleoverlay",
+    "productName": "HuddleOverlay",
+    "copyright": "Jacob Navaratne",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "build/tray*.png"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        { "target": "dmg", "arch": ["arm64"] },
+        { "target": "zip", "arch": ["arm64"] }
+      ],
+      "icon": "build/icon.png",
+      "identity": null,
+      "extendInfo": {
+        "LSUIElement": false
+      }
+    },
+    "win": {
+      "target": [{ "target": "zip", "arch": ["x64"] }],
+      "icon": "build/icon.png",
+      "signAndEditExecutable": false
+    },
+    "dmg": {
+      "title": "Huddle Overlay"
+    }
+  }
+}
